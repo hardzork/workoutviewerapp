@@ -5,14 +5,14 @@ import { UserPhoto } from "@components/UserPhoto";
 import {
   Center,
   Heading,
-  // KeyboardAvoidingView,
+  KeyboardAvoidingView,
   ScrollView,
   Skeleton,
   Text,
   VStack,
 } from "native-base";
 import { useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { Platform, TouchableOpacity } from "react-native";
 
 const PHOTO_SIZE = 33;
 
@@ -21,8 +21,10 @@ export function Profile() {
   return (
     <VStack>
       <ScreenHeader title="Perfil" />
-      {/* <KeyboardAvoidingView behavior="padding"> */}
-      <ScrollView>
+      {/* <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      > */}
+      <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
         <Center mt={6} px={10}>
           {isPhotoLoading ? (
             <Skeleton

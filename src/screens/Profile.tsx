@@ -1,7 +1,16 @@
+import { Button } from "@components/Button";
 import { Input } from "@components/Input";
 import { ScreenHeader } from "@components/ScreenHeader";
 import { UserPhoto } from "@components/UserPhoto";
-import { Center, ScrollView, Skeleton, Text, VStack } from "native-base";
+import {
+  Center,
+  Heading,
+  // KeyboardAvoidingView,
+  ScrollView,
+  Skeleton,
+  Text,
+  VStack,
+} from "native-base";
 import { useState } from "react";
 import { TouchableOpacity } from "react-native";
 
@@ -12,6 +21,7 @@ export function Profile() {
   return (
     <VStack>
       <ScreenHeader title="Perfil" />
+      {/* <KeyboardAvoidingView behavior="padding"> */}
       <ScrollView>
         <Center mt={6} px={10}>
           {isPhotoLoading ? (
@@ -40,10 +50,24 @@ export function Profile() {
               Alterar foto
             </Text>
           </TouchableOpacity>
-          <Input placeholder="Nome" bg="gray.700" />
-          <Input placeholder="E-mail" bg="gray.700" isDisabled />
+          <Input placeholder="Nome" bg="gray.500" />
+          <Input placeholder="E-mail" bg="gray.500" isDisabled />
         </Center>
+        <VStack px={10} mt={12} mb={9}>
+          <Heading color="gray.200" fontSize="md" mb={2}>
+            Alterar senha
+          </Heading>
+          <Input placeholder="senha atual" bg="gray.500" secureTextEntry />
+          <Input placeholder="Nova senha" bg="gray.500" secureTextEntry />
+          <Input
+            placeholder="Confirme nova senha"
+            bg="gray.500"
+            secureTextEntry
+          />
+          <Button title="Atualizar" mt={4} />
+        </VStack>
       </ScrollView>
+      {/* </KeyboardAvoidingView> */}
     </VStack>
   );
 }

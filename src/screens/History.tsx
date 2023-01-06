@@ -13,6 +13,7 @@ export function History() {
       <ScreenHeader title="Histórico de Exercícios" />
       <SectionList
         px={8}
+        showsVerticalScrollIndicator={false}
         sections={exercises}
         keyExtractor={(item) => item}
         renderItem={({ item }) => <HistoryCard />}

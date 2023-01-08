@@ -29,10 +29,7 @@ export function Profile() {
         aspect: [4, 4],
         allowsEditing: true,
       });
-      if (photoSelected.canceled) {
-        return;
-      }
-      if (photoSelected.assets[0].uri) {
+      if (!photoSelected.canceled && photoSelected.assets[0].uri) {
         setUserPhoto(photoSelected.assets[0].uri);
       }
     } catch (error) {

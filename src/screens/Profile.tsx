@@ -18,9 +18,14 @@ import * as ImagePicker from "expo-image-picker";
 const PHOTO_SIZE = 33;
 
 export function Profile() {
-  const [isPhotoLoading, setIsPhotoLoading] = useState(true);
+  const [isPhotoLoading, setIsPhotoLoading] = useState(false);
   async function handleUserPhotoSelect() {
-    await ImagePicker.launchImageLibraryAsync();
+    await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      quality: 1,
+      aspect: [4, 4],
+      allowsEditing: true,
+    });
   }
   return (
     <VStack>

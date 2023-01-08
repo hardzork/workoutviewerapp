@@ -9,6 +9,7 @@ import {
   ScrollView,
   Skeleton,
   Text,
+  useToast,
   VStack,
 } from "native-base";
 import { useState } from "react";
@@ -21,6 +22,7 @@ const PHOTO_SIZE = 33;
 export function Profile() {
   const [isPhotoLoading, setIsPhotoLoading] = useState(false);
   const [userPhoto, setUserPhoto] = useState("https://github.com/hardzork.png");
+  const toast = useToast();
   async function handleUserPhotoSelect() {
     setIsPhotoLoading(true);
     try {
@@ -36,8 +38,11 @@ export function Profile() {
         );
         console.log(photoInfo);
         if (photoInfo.size && photoInfo.size / 1024 / 1024 > 4) {
-          Alert.alert("Essa imagem é muito grande, escolha uma de até 5MB");
-          return;
+          return toast.show({
+            title: "Essa imagem é muito grande, escolha uma de até 5MB",
+            placement: "top",
+            bgColor: "red.500",
+          });
         }
         setUserPhoto(photoSelected.assets[0].uri);
       }

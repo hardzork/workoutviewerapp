@@ -12,7 +12,7 @@ import {
   VStack,
 } from "native-base";
 import { useState } from "react";
-import { Platform, TouchableOpacity } from "react-native";
+import { Alert, Platform, TouchableOpacity } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as FileSystem from "expo-file-system";
 
@@ -35,6 +35,10 @@ export function Profile() {
           photoSelected.assets[0].uri
         );
         console.log(photoInfo);
+        if (photoInfo.size && photoInfo.size / 1024 / 1024 > 4) {
+          Alert.alert("Essa imagem é muito grande, escolha uma de até 5MB");
+          return;
+        }
         setUserPhoto(photoSelected.assets[0].uri);
       }
     } catch (error) {

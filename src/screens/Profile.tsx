@@ -19,6 +19,7 @@ const PHOTO_SIZE = 33;
 
 export function Profile() {
   const [isPhotoLoading, setIsPhotoLoading] = useState(false);
+  const [userPhoto, setUserPhoto] = useState("https://github.com/hardzork.png");
   async function handleUserPhotoSelect() {
     const photoSelected = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -29,7 +30,7 @@ export function Profile() {
     if (photoSelected.canceled) {
       return;
     }
-    console.log(photoSelected);
+    setUserPhoto(photoSelected.assets[0].uri);
   }
   return (
     <VStack>
@@ -49,7 +50,7 @@ export function Profile() {
             />
           ) : (
             <UserPhoto
-              source={{ uri: "https://github.com/hardzork.png" }}
+              source={{ uri: userPhoto }}
               alt="Robinson Junior"
               size={PHOTO_SIZE}
             />

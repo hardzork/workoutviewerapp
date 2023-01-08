@@ -22,6 +22,9 @@ const signUpSchema = Yup.object({
   password: Yup.string()
     .required("Informe a senha.")
     .min(6, "A senha deve ter pelo menos 6 dígitos."),
+  confirmPassword: Yup.string()
+    .required("Confirme a senha.")
+    .oneOf([Yup.ref("password"), null], "As senhas não são iguais."),
 });
 
 export function SignUp() {
@@ -115,6 +118,7 @@ export function SignUp() {
                 value={value}
                 onSubmitEditing={handleSubmit(handleSignUp)}
                 returnKeyType="send"
+                errorMessage={errors.confirmPassword?.message}
               />
             )}
           />
